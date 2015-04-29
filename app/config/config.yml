@@ -156,9 +156,14 @@ vich_uploader:
 
 liip_imagine:
     resolvers:
-       default:
-          web_path: ~
-
+        default:
+            web_path:
+                web_root:     '%kernel.root_dir%/../htdocs'
+                cache_prefix: media/cache
+    loaders:
+        default:
+            filesystem:
+                data_root:  '%kernel.root_dir%/../htdocs'
     filter_sets:
         card:
             filters:
