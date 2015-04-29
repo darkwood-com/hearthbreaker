@@ -121,7 +121,7 @@ apache:
     vhosts:
         host01:
             servername: heartbreaker.dev
-            docroot: /var/www/web
+            docroot: /var/www/htdocs
             port: '80'
             setenv:
                 - 'APP_ENV dev'
@@ -251,7 +251,7 @@ mysql:
     install: '1'
     settings:
         version: '5.6'
-        root_password: '123'
+        root_password: 'root'
         override_options: {  }
     adminer: 0
     users: {  }
