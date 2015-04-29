@@ -1,0 +1,45 @@
+parameters:
+    hb.card.class: Darkwood\HearthbreakerBundle\Services\CardService
+    hb.cardUnity.class: Darkwood\HearthbreakerBundle\Services\CardUnityService
+    hb.deck.class: Darkwood\HearthbreakerBundle\Services\DeckService
+    hb.deckCard.class: Darkwood\HearthbreakerBundle\Services\DeckCardService
+    hb.userCard.class: Darkwood\HearthbreakerBundle\Services\UserCardService
+    hb.cache.class: Darkwood\HearthbreakerBundle\Services\CacheService
+    bh.namer_card.class: Darkwood\HearthbreakerBundle\Naming\CardNamer
+    bh.client.class: Darkwood\HearthbreakerBundle\Goutte\Client
+
+services:
+    hb.card:
+        class: %hb.card.class%
+        arguments: [@doctrine.orm.entity_manager, @hb.cache]
+        calls:
+          - [ setContainer, [@service_container] ]
+
+    hb.deck:
+        class: %hb.deck.class%
+        arguments: [@doctrine.orm.entity_manager, @hb.cache, @hb.card, @hb.userCard]
+        calls:
+          - [ setContainer, [@service_container] ]
+
+    hb.deckCard:
+        class: %hb.deckCard.class%
+        arguments: [@doctrine.orm.entity_manager, @hb.cache]
+
+    hb.userCard:
+        class: %hb.userCard.class%
+        arguments: [@doctrine.orm.entity_manager, @hb.cache, @hb.card]
+
+    hb.cache:
+        class: %hb.cache.class%
+        arguments: [@aequasi_cache.instance.default, %hb.cache%]
+
+    bh.namer_card:
+        class: %bh.namer_card.class%
+
+    hb.client:
+        class: %bh.client.class%
+        arguments: [@aequasi_cache.instance.scrapper, %hb.cache%]
+
+    hb.routing.loader:
+        class: %routing.loader.yml.class%
+        arguments: [@file_locator]

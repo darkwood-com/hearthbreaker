@@ -1,0 +1,66 @@
+{% spaceless %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<title>HearthBreaker</title>
+
+	<!-- Bootstrap -->
+	<link href="{{ asset('/bundles/hearthbreaker/css/bootstrap.min.css') }}" rel="stylesheet">
+	<link href="{{ asset('/bundles/hearthbreaker/css/main.css') }}" rel="stylesheet">
+
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+</head>
+<body>
+
+<div class="container">
+
+	<!-- Static navbar -->
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">HearthBreaker</a>
+			</div>
+			<div id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li class="{% if nav == 'card' %}active{% endif %}"><a href="{{ path('card_list') }}">Cards</a></li>
+					<li class="{% if nav == 'deck' %}active{% endif %}"><a href="{{ path('deck_list') }}">Decks</a></li>
+					<li class="{% if nav == 'source' %}active{% endif %}"><a href="{{ path('source_list') }}">Sources</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					{% if app.user %}
+						<li><a href="{{ path('fos_user_security_logout') }}">Welcome, {{ app.user.firstname }}</a></li>
+					{% else %}
+						<li class="{% if nav == 'login' %}active{% endif %}"><a href="{{ path('fos_user_security_login') }}">Login</a></li>
+					{% endif %}
+				</ul>
+			</div><!--/.nav-collapse -->
+		</div><!--/.container-fluid -->
+	</nav>
+
+	{% block content %}{% endblock %}
+
+</div>
+
+<script src="{{ asset('/bundles/fosjsrouting/js/router.js') }}"></script>
+<script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+<script src="{{ asset('/bundles/hearthbreaker/js/jquery.min.js') }}"></script>
+<script src="{{ asset('/bundles/hearthbreaker/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('/bundles/hearthbreaker/js/main.js') }}"></script>
+</body>
+</html>
+{% endspaceless %}

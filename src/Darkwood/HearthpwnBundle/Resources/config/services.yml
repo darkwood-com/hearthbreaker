@@ -1,0 +1,27 @@
+parameters:
+    hb.hearthpwn.scrapper.class: Darkwood\HearthpwnBundle\Services\ScrapperHearthpwnService
+    hb.hearthpwn.router.class: Symfony\Component\Routing\Router
+    hb.hearthpwn.router.request_context.class: Symfony\Component\Routing\RequestContext
+
+services:
+    hb.hearthpwn.scrapper:
+        class: %hb.hearthpwn.scrapper.class%
+        arguments:
+          - @event_dispatcher
+          - @hb.client
+          - @hb.hearthpwn.router
+          - @hb.card
+          - @hb.deck
+          - @hb.deckCard
+
+    hb.hearthpwn.router:
+        class: %hb.hearthpwn.router.class%
+        arguments:
+          - @hb.routing.loader
+          - "%kernel.root_dir%/../src/Darkwood/HearthpwnBundle/Resources/config/host_routing.yml"
+          - []
+          - @hb.hearthpwn.router.request_context
+
+    hb.hearthpwn.router.request_context:
+        class: %hb.hearthpwn.router.request_context.class%
+        arguments: ["", "GET", "www.hearthpwn.com"]

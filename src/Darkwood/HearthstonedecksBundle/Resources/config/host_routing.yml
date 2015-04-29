@@ -1,0 +1,11 @@
+card_list:
+    path: /carte/{page}
+
+card_detail:
+    path: /carte/voir/{slug}
+
+deck_list:
+    path: /deck/formulaire
+
+deck_detail:
+    path: /deck/voir/{slug}

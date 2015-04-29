@@ -1,0 +1,69 @@
+{% extends "HearthbreakerBundle::layout.html.twig" %}
+
+{% block content %}
+	<div class="panel panel-default">
+		<div class="panel-body">
+            {{ form_start(form, {'attr': {'class': 'form-auto-submit'} }) }}
+            {{ form_row(form.source) }}
+			{{ form_row(form.title) }}
+			{{ form_row(form.class) }}
+			<div class="row">
+				<div class="col-xs-4">{{ form_row(form.buy) }}</div>
+                <div class="col-xs-4">{{ form_row(form.card_percent) }}</div>
+                <div class="col-xs-4">{{ form_row(form.buy_percent) }}</div>
+			</div>
+			<div class="row">
+                <div class="col-xs-3">{{ form_row(form.vote_up) }}</div>
+                <div class="col-xs-3">{{ form_row(form.vote_down) }}</div>
+                <div class="col-xs-2">{{ form_row(form.rating) }}</div>
+				<div class="col-xs-2">{{ form_row(form.matches) }}</div>
+				<div class="col-xs-2">{{ form_row(form.win_rate) }}</div>
+			</div>
+            {{ form_row(form.since) }}
+			{{ form_end(form) }}
+		</div>
+	</div>
+
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Title</th>
+						<th>Buy</th>
+						<th>Card %</th>
+						<th>Buy %</th>
+                        <th>Note</th>
+                        <th>Last update</th>
+                    </tr>
+				</thead>
+				<tbody>
+				{% for deck in decks %}
+					<tr>
+						<td><a href="{{ path('deck_detail', {'source': deck.deck.source, 'slug': deck.deck.slug}) }}">{{ deck.deck.name }}</a></td>
+						<td>{{ deck.buy }}</td>
+						<td>{{ deck.cardPercent }} %</td>
+						<td>{{ deck.buyPercent }} %</td>
+                        <td>
+                        {% if deck.deck.source == "hearthstonedecks" %}
+                            {{ deck.deck.voteUp }} - {{ deck.deck.voteDown }}
+						{% elseif deck.deck.source == "hearthstats" %}
+							{{ deck.deck.matches }} - {{ (deck.deck.winRate * 100) | number_format(0, '.', ',') }} %
+                        {% elseif deck.deck.source == "hearthpwn" %}
+                            {{ deck.deck.rating }}
+                        {% endif %}
+                        </td>
+                        <td>
+                        {% if deck.deck.source == "hearthstonedecks" %}
+                            {{ deck.deck.updatedAt | date('Y-m-d') }}
+                        {% elseif deck.deck.source == "hearthpwn" %}
+                            {{ deck.deck.updatedAt | date('Y-m-d') }}
+                        {% endif %}
+                        </td>
+					</tr>
+				{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+{% endblock %}

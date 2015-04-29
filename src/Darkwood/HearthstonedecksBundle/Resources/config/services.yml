@@ -1,0 +1,27 @@
+parameters:
+    hb.hearthstonedecks.scrapper.class: Darkwood\HearthstonedecksBundle\Services\ScrapperHearthstonedecksService
+    hb.hearthstonedecks.router.class: Symfony\Component\Routing\Router
+    hb.hearthstonedecks.router.request_context.class: Symfony\Component\Routing\RequestContext
+
+services:
+    hb.hearthstonedecks.scrapper:
+        class: %hb.hearthstonedecks.scrapper.class%
+        arguments:
+          - @event_dispatcher
+          - @hb.client
+          - @hb.hearthstonedecks.router
+          - @hb.card
+          - @hb.deck
+          - @hb.deckCard
+
+    hb.hearthstonedecks.router:
+        class: %hb.hearthstonedecks.router.class%
+        arguments:
+          - @hb.routing.loader
+          - "%kernel.root_dir%/../src/Darkwood/HearthstonedecksBundle/Resources/config/host_routing.yml"
+          - []
+          - @hb.hearthstonedecks.router.request_context
+
+    hb.hearthstonedecks.router.request_context:
+        class: %hb.hearthstonedecks.router.request_context.class%
+        arguments: ["", "GET", "www.hearthstone-decks.com"]

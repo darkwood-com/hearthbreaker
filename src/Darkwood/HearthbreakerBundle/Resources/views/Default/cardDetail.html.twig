@@ -1,0 +1,64 @@
+{% extends "HearthbreakerBundle::layout.html.twig" %}
+
+{% block content %}
+	<div class="panel panel-default">
+		<div class="panel-heading">{{ card.name }}</div>
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-xs-8">
+					<table class="table table-striped">
+						<tbody>
+						<tr>
+							<td>Cost</td>
+							<td>{{ card.cost }}</td>
+						</tr>
+						<tr>
+							<td>Attack</td>
+							<td>{{ card.attack }}</td>
+						</tr>
+						<tr>
+							<td>Health</td>
+							<td>{{ card.health }}</td>
+						</tr>
+						<tr>
+							<td>Description</td>
+							<td>{{ card.text }}</td>
+						</tr>
+						<tr>
+							<td>Buy</td>
+							<td>{{ buy }}</td>
+						</tr>
+						<tr>
+							<td>Sell</td>
+							<td>{{ sell }}</td>
+						</tr>
+						<tr>
+							<td>Flavor</td>
+							<td>{{ card.flavor }}</td>
+						</tr>
+						<tr>
+							<td>Rarity</td>
+							<td>{{ card.rarity }}</td>
+						</tr>
+						<tr>
+							<td>Class</td>
+							<td>{{ card.playerClass }}</td>
+						</tr>
+						<tr>
+							<td>Type</td>
+							<td>{{ card.type }}</td>
+						</tr>
+                        <tr>
+                            <td>Link</td>
+                            <td><a href="{{ url }}" target="_blank">{{ url }}</a></td>
+                        </tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="col-xs-4 text-center">
+					<img src='{{ vich_uploader_asset(card, 'image') | imagine_filter('card') }}' />
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

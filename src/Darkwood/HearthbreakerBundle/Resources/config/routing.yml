@@ -1,0 +1,29 @@
+homepage:
+    path:     /
+    defaults: { _controller: HearthbreakerBundle:Default:card }
+
+card_list:
+    path: /carte
+    defaults: { _controller: HearthbreakerBundle:Default:card }
+
+card_detail:
+    path: /carte/{source}/{slug}
+    defaults: { _controller: HearthbreakerBundle:Default:cardDetail }
+
+deck_list:
+    path: /deck
+    defaults: { _controller: HearthbreakerBundle:Default:deck }
+
+deck_detail:
+    path: /deck/{source}/{slug}
+    defaults: { _controller: HearthbreakerBundle:Default:deckDetail }
+
+source_list:
+    path: /source
+    defaults: { _controller: HearthbreakerBundle:Default:source }
+
+user_card:
+    path: /joueur/carte/{source}/{slug}/{isGolden}
+    defaults: { _controller: HearthbreakerBundle:Default:userCard }
+    options:
+        expose: true

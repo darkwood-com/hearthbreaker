@@ -1,0 +1,28 @@
+# Mac
+.DS_Store
+._.DS_Store
+
+# Vagrant
+.vagrant
+puphpet/files/dot/ssh/id_rsa
+puphpet/files/dot/ssh/id_rsa.pem
+puphpet/files/dot/ssh/id_rsa.ppk
+puphpet/files/dot/ssh/id_rsa.pub
+puphpet/puppet/modules
+
+# PhpStorm
+.idea
+
+# symfony
+.cache
+app/bootstrap.php.cache
+app/cache/*
+app/config/parameters.yml
+app/logs/*
+app/phpunit.xml
+composer.phar
+vendor/
+web/bundles/
+web/media/
+phpMemcachedAdmin
+save.json
