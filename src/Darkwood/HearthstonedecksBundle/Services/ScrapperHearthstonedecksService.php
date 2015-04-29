@@ -240,7 +240,7 @@ class ScrapperHearthstonedecksService
 
         $crawler = $this->requestRoute('deck_detail', array('slug' => $slug));
 
-        $deck->setName($crawler->filter('#content h3')->text());
+        $deck->setName($crawler->filter('#content h1')->text());
 
         $attr = null;
         $crawler
