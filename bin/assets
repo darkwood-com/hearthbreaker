@@ -1,6 +1,6 @@
 #!/bin/sh
 
-app/console assets:install web --symlink
+app/console assets:install htdocs --symlink
 app/console assetic:dump
 
 # app/console assetic:dump --env=prod
