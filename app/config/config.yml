@@ -127,8 +127,11 @@ aequasi_cache:
             hosts:
                 - { host: localhost, port: 11211 }
         scrapper:
-            type: file_system
-            directory: %kernel.root_dir%/../.cache/scrapper
+            persistent: true
+            namespace: mc_scrapper
+            type: memcached
+            hosts:
+                - { host: localhost, port: 11211 }
     doctrine:
         enabled: true
         metadata:
@@ -148,7 +151,7 @@ vich_uploader:
     mappings:
         card:
             uri_prefix:         /media/card
-            upload_destination: %kernel.root_dir%/../web/media/card
+            upload_destination: %kernel.root_dir%/../htdocs/media/card
             namer:              bh.namer_card
 
 liip_imagine:

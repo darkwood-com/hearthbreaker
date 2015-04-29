@@ -5,9 +5,10 @@ if $apache_values == undef { $apache_values = hiera_hash('apache', false) }
 if $nginx_values == undef { $nginx_values = hiera_hash('nginx', false) }
 
 include puphpet::params
+include puphpet::apache::params
+include puphpet::mysql::params
 
 if array_true($mysql_values, 'install') {
-  include puphpet::mysql::params
   include mysql::params
 
   if array_true($apache_values, 'install')
@@ -91,11 +92,11 @@ if array_true($mysql_values, 'install') {
   }
 
   each( $mysql_users ) |$key, $user| {
-    # if no host passed with username, default to all
+    # if no host passed with username, default to localhost
     if '@' in $user['name'] {
       $name = $user['name']
     } else {
-      $name = "${user['name']}@%"
+      $name = "${user['name']}@localhost"
     }
 
     # force to_string to convert possible ints
@@ -153,11 +154,11 @@ if array_true($mysql_values, 'install') {
   }
 
   each( $mysql_grants ) |$key, $grant| {
-    # if no host passed with username, default to all
+    # if no host passed with username, default to localhost
     if '@' in $grant['user'] {
       $user = $grant['user']
     } else {
-      $user = "${grant['user']}@%"
+      $user = "${grant['user']}@localhost"
     }
 
     $table = $grant['table']
@@ -179,7 +180,7 @@ if array_true($mysql_values, 'install') {
   }
 
   if $mysql_php_installed and $mysql_php_package == 'php' {
-    if $::osfamily == 'redhat' and $php_values['version'] == '53' {
+    if $::osfamily == 'redhat' and $php_values['settings']['version'] == '53' {
       $mysql_php_module = 'mysql'
     } elsif $::lsbdistcodename == 'lucid' or $::lsbdistcodename == 'squeeze' {
       $mysql_php_module = 'mysql'
@@ -198,7 +199,7 @@ if array_true($mysql_values, 'install') {
     and $mysql_php_installed
     and ! defined(Class['puphpet::adminer'])
   {
-    $mysql_apache_webroot = $puphpet::params::apache_webroot_location
+    $mysql_apache_webroot = $puphpet::apache::params::default_vhost_dir
     $mysql_nginx_webroot  = $puphpet::params::nginx_webroot_location
 
     if array_true($apache_values, 'install') {

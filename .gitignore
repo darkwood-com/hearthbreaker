@@ -22,7 +22,7 @@ app/logs/*
 app/phpunit.xml
 composer.phar
 vendor/
-web/bundles/
-web/media/
+htdocs/bundles/
+htdocs/media/
 phpMemcachedAdmin
 save.json

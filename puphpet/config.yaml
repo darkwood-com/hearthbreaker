@@ -1,5 +1,5 @@
----
-vagrantfile-local:
+vagrantfile:
+    target: local
     vm:
         box: puphpet/debian75-x64
         box_url: puphpet/debian75-x64
@@ -38,14 +38,21 @@ vagrantfile-local:
                     - '--hiera_config /vagrant/puphpet/puppet/hiera.yaml'
                     - '--parser future'
         synced_folder:
-            BXHFvAlEI5V3:
-                owner: ''
-                group: ''
+            vflsf_7y0qcwzxkk4l:
                 source: ./
                 target: /var/www
                 sync_type: nfs
                 rsync:
-                    auto: 'false'
+                    args:
+                        - '--verbose'
+                        - '--archive'
+                        - '-z'
+                    exclude:
+                        - .vagrant/
+                        - .git/
+                    auto: 'true'
+                owner: www-data
+                group: www-data
         usable_port_range:
             start: 10200
             stop: 10500
@@ -70,12 +77,36 @@ users_groups:
     install: '1'
     groups: {  }
     users: {  }
-cron:
-    install: '1'
-    jobs: {  }
 firewall:
     install: '1'
     rules: {  }
+cron:
+    install: '1'
+    jobs: {  }
+nginx:
+    install: '0'
+    settings:
+        default_vhost: 1
+        proxy_buffer_size: 128k
+        proxy_buffers: '4 256k'
+    upstreams: {  }
+    vhosts:
+        nxv_7nyc2144dk90:
+            server_name: awesome.dev
+            server_aliases:
+                - www.awesome.dev
+            www_root: /var/www/awesome.dev
+            listen_port: '80'
+            index_files:
+                - index.html
+                - index.htm
+                - index.php
+            client_max_body_size: 1m
+            ssl: '0'
+            ssl_cert: ''
+            ssl_key: ''
+            ssl_port: ''
+    proxies: {  }
 apache:
     install: '1'
     settings:
@@ -94,9 +125,13 @@ apache:
             port: '80'
             setenv:
                 - 'APP_ENV dev'
+            custom_fragment: ''
+            ssl_cert: ''
+            ssl_key: ''
+            ssl_chain: ''
+            ssl_certs_dir: ''
             directories:
-                zdgepd5zgh9u:
-                    provider: directory
+                avd_earu060ib46r:
                     path: /var/www
                     options:
                         - Indexes
@@ -108,21 +143,20 @@ apache:
                         - all
                         - granted
                     custom_fragment: ''
-            engine: php
-            custom_fragment: ''
-            ssl_cert: ''
-            ssl_key: ''
-            ssl_chain: ''
-            ssl_certs_dir: ''
+                    provider: directory
         host02:
             servername: php-memcached-admin.heartbreaker.dev
             docroot: /var/www/phpMemcachedAdmin
             port: '80'
             setenv:
                 - 'APP_ENV dev'
+            custom_fragment: ''
+            ssl_cert: ''
+            ssl_key: ''
+            ssl_chain: ''
+            ssl_certs_dir: ''
             directories:
-                zdgepd5zgh9u:
-                    provider: directory
+                avd_278l8gff0q4z:
                     path: /var/www/phpMemcachedAdmin
                     options:
                         - Indexes
@@ -134,41 +168,11 @@ apache:
                         - all
                         - granted
                     custom_fragment: ''
-            engine: php
-            custom_fragment: ''
-            ssl_cert: ''
-            ssl_key: ''
-            ssl_chain: ''
-            ssl_certs_dir: ''
-    mod_pagespeed: 0
-nginx:
-    install: '0'
-    settings:
-        default_vhost: 1
-        proxy_buffer_size: 128k
-        proxy_buffers: '4 256k'
-    upstreams: {  }
-    vhosts:
-        rwabcimukuvu:
-            proxy: ''
-            server_name: awesome.dev
-            server_aliases:
-                - www.awesome.dev
-            www_root: /var/www/awesome.dev
-            listen_port: '80'
-            index_files:
-                - index.html
-                - index.htm
-                - index.php
-            client_max_body_size: 1m
-            ssl_cert: ''
-            ssl_key: ''
-            ssl_port: ''
+                    provider: directory
 php:
     install: '1'
-    version: '55'
-    composer: '1'
-    composer_home: ''
+    settings:
+        version: '56'
     modules:
         php:
             - cli
@@ -187,18 +191,12 @@ php:
         session.save_path: /var/lib/php/session
         upload_max_filesize: 1024M
         post_max_size: 1024M
-        date.timezone: "Europe/Paris"
-    mod_php: '1'
-hhvm:
-    install: '0'
-    nightly: 0
+        date.timezone: Europe/Paris
+    fpm_ini:
+        error_log: /var/log/php-fpm.log
+    fpm_pools: {  }
     composer: '1'
     composer_home: ''
-    settings:
-        host: '0'
-        port: '0'
-    ini: {  }
-    timezone: null
 xdebug:
     install: '1'
     settings:
@@ -209,6 +207,20 @@ xdebug:
         xdebug.remote_handler: dbgp
         xdebug.remote_port: '9000'
         xdebug.remote_host: 10.1.1.1
+blackfire:
+    install: '0'
+    settings:
+        server_id: ''
+        server_token: ''
+        agent:
+            http_proxy: ''
+            https_proxy: ''
+            log_file: stderr
+            log_level: '1'
+        php:
+            agent_timeout: '0.25'
+            log_file: ''
+            log_level: '1'
 xhprof:
     install: '0'
 wpcli:
@@ -220,13 +232,21 @@ drush:
 ruby:
     install: '1'
     versions: {  }
-nodejs:
-    install: '0'
-    npm_packages: {  }
 python:
     install: '1'
     packages: {  }
     versions: {  }
+nodejs:
+    install: '0'
+    npm_packages: {  }
+hhvm:
+    install: '0'
+    nightly: 0
+    composer: '1'
+    composer_home: ''
+    settings: {  }
+    server_ini: {  }
+    php_ini: {  }
 mysql:
     install: '1'
     settings:
@@ -249,20 +269,21 @@ postgresql:
     users: {  }
     grants: {  }
     adminer: 0
-sqlite:
-    install: '0'
-    adminer: 0
-    databases: {  }
 mongodb:
     install: '0'
     settings:
         auth: 1
+        bind_ip: 127.0.0.1
         port: '27017'
     databases: {  }
 redis:
     install: '0'
     settings:
         conf_port: '6379'
+sqlite:
+    install: '0'
+    adminer: 0
+    databases: {  }
 mailcatcher:
     install: '0'
     settings:
@@ -299,6 +320,6 @@ elastic_search:
 solr:
     install: '0'
     settings:
-        version: ''
+        version: 4.10.2
         port: ''
 
