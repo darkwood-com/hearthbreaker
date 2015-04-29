@@ -1,0 +1,6 @@
+#!/bin/sh
+echo "flush_all" | nc -q 2 localhost 11211 #memcached flush
+rm -rf app/cache/* app/logs/*
+
+app/console assets:install web
+app/console assetic:dump
