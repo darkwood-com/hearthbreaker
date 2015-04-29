@@ -112,11 +112,12 @@ apache:
     settings:
         user: www-data
         group: www-data
-        default_vhost: true
+        default_vhost: false
         manage_user: false
         manage_group: false
         sendfile: 0
     modules:
+        - proxy_fcgi
         - rewrite
     vhosts:
         host01:
@@ -140,9 +141,14 @@ apache:
                     allow_override:
                         - All
                     require:
-                        - all
-                        - granted
+                        - 'all granted'
                     custom_fragment: ''
+                    files_match:
+                        avdfm_bbm8kzx8yq3o:
+                            path: \.php$
+                            sethandler: 'proxy:fcgi://127.0.0.1:9000'
+                            custom_fragment: ''
+                            provider: filesmatch
                     provider: directory
         host02:
             servername: php-memcached-admin.heartbreaker.dev
@@ -165,9 +171,14 @@ apache:
                     allow_override:
                         - All
                     require:
-                        - all
-                        - granted
+                        - 'all granted'
                     custom_fragment: ''
+                    files_match:
+                        avdfm_bbm8kzx8yq3o:
+                            path: \.php$
+                            sethandler: 'proxy:fcgi://127.0.0.1:9000'
+                            custom_fragment: ''
+                            provider: filesmatch
                     provider: directory
 php:
     install: '1'
@@ -194,7 +205,14 @@ php:
         date.timezone: Europe/Paris
     fpm_ini:
         error_log: /var/log/php-fpm.log
-    fpm_pools: {  }
+    fpm_pools:
+        phpfp_nkimy9i4w1qr:
+            ini:
+                prefix: www
+                listen: '127.0.0.1:9000'
+                security.limit_extensions: .php
+                user: www-user
+                group: www-data
     composer: '1'
     composer_home: ''
 xdebug:
