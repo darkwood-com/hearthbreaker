@@ -1,4 +1,6 @@
 #!/bin/sh
+composer.phar install
+
 rm -rf app/cache/* app/logs/*
 
 app/console assets:install htdocs
