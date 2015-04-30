@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "779a7060861840a076277358bef72877",
+    "hash": "41517832f4bcdbf7c61eb76f2328ded3",
     "packages": [
         {
             "name": "aequasi/cache-bundle",
@@ -95,6 +95,56 @@
                 "transliterator"
             ],
             "time": "2014-05-15 22:08:22"
+        },
+        {
+            "name": "coresphere/console-bundle",
+            "version": "0.1.0",
+            "target-dir": "CoreSphere/ConsoleBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/CoreSphere/ConsoleBundle.git",
+                "reference": "2c482cbf8bdb882b70e291c5fc01072f27382c42"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/CoreSphere/ConsoleBundle/zipball/2c482cbf8bdb882b70e291c5fc01072f27382c42",
+                "reference": "2c482cbf8bdb882b70e291c5fc01072f27382c42",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "symfony/framework-bundle": ">=2.1.0,<3.0"
+            },
+            "require-dev": {
+                "symfony/console": ">=2.1.0,<3.0"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-0": {
+                    "CoreSphere\\ConsoleBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Laszlo Korte",
+                    "email": "coresphere@laszlokorte.de"
+                },
+                {
+                    "name": "Markus Ullmann",
+                    "email": "mail@markus-ullmann.de"
+                }
+            ],
+            "description": "This bundle allows you accessing the symfony2 console via your browser",
+            "keywords": [
+                "console",
+                "javascript",
+                "symfony"
+            ],
+            "time": "2013-04-21 21:57:54"
         },
         {
             "name": "doctrine/annotations",
