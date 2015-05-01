@@ -13,7 +13,7 @@ class UserLoadCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('users:load')
+            ->setName('hb:load')
             ->setDescription('Load users')
         ;
     }
