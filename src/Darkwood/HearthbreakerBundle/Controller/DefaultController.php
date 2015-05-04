@@ -225,7 +225,7 @@ class DefaultController extends Controller
 			throw new AccessDeniedException();
 		}
 
-        $isGolden = boolval($isGolden);
+        $isGolden = (bool) $isGolden;
 
         /** @var UserCardService $userCardService */
         $userCardService = $this->get('hb.userCard');

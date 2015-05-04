@@ -12,7 +12,7 @@ class UserSaveCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('users:save')
+            ->setName('hb:save')
             ->setDescription('Save users')
         ;
     }

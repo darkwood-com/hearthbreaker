@@ -18,7 +18,7 @@ class ScrapperCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('scrapper:run')
+            ->setName('hb:scrapper')
             ->setDescription('run scrapper')
             ->addOption('limit', 'l', InputOption::VALUE_OPTIONAL, '', 50)
 			->addOption('sync', null, InputOption::VALUE_OPTIONAL)

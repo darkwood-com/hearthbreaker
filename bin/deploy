@@ -3,5 +3,5 @@ composer.phar install
 
 rm -rf app/cache/* app/logs/*
 
-app/console assets:install htdocs
+app/console assets:install htdocs --symlink
 app/console assetic:dump
