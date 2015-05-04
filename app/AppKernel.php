@@ -24,7 +24,6 @@ class AppKernel extends Kernel
             new Aequasi\Bundle\CacheBundle\AequasiCacheBundle(),
             new Vich\UploaderBundle\VichUploaderBundle(),
 			new Liip\ImagineBundle\LiipImagineBundle(),
-			new CoreSphere\ConsoleBundle\CoreSphereConsoleBundle(),
 
             new Darkwood\HearthbreakerBundle\HearthbreakerBundle(),
 			new Darkwood\HearthstonedecksBundle\HearthstonedecksBundle(),
