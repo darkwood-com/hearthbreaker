@@ -194,6 +194,7 @@ php:
             - xsl
         pear: {  }
         pecl:
+            - memcache
             - memcached
             - pecl_http
     ini:

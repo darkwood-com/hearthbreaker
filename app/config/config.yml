@@ -121,17 +121,11 @@ fos_user:
 aequasi_cache:
     instances:
         default:
-            persistent: true
-            namespace: mc
-            type: memcached
-            hosts:
-                - { host: localhost, port: 11211 }
+            type: file_system
+            directory: %kernel.cache_dir%/hb
         scrapper:
-            persistent: true
-            namespace: mc_scrapper
-            type: memcached
-            hosts:
-                - { host: localhost, port: 11211 }
+            type: file_system
+            directory: %kernel.cache_dir%/hb_scrapper
     doctrine:
         enabled: true
         metadata:
