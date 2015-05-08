@@ -81,14 +81,13 @@ class ScrapperHearthstatsService
                 ->each(function (Crawler $node) {
                     try {
                         $href = $node->attr('href');
+                        $pos = strpos($href, '?');
+                        if($pos !== false)
+                        {
+                            $href = substr($href, 0, $pos);
+                        }
                         $match = $this->router->match($href);
                         if ($match['_route'] == 'deck_detail') {
-							$pos = strpos($match['slug'], '?');
-							if($pos !== false)
-							{
-								$match['slug'] = substr($match['slug'], 0, $pos);
-							}
-
                             return $match['slug'];
                         }
                     } catch (ResourceNotFoundException $e) {
