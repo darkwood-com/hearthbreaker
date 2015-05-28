@@ -9,9 +9,9 @@ parameters:
         # durees de mises en caches en secondes
         keys:
             scrapper: 86400 #1 day
-            card: 3600
-            deck: 3600
-            user: 3600
+            card: 1209600 #2 weeks
+            deck: 1209600 #2 weeks
+            user: 86400 #1 day
             hearthstonejson: 86400 #1 day
 
 framework:

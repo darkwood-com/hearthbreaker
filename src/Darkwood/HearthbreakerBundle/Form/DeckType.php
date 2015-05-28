@@ -14,6 +14,7 @@ class DeckType extends AbstractType
 				'choices'   => array(
 					'hearthstonedecks' => 'Hearthstone Decks',
 					'hearthpwn' => 'Hearthpwn',
+                    'hearthstats' => 'Hearthstats',
 				),
 				'required' => false,
 			))

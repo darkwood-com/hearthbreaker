@@ -31,6 +31,7 @@ class DefaultController extends Controller
         }
 
         $form = $this->createForm(new CardType());
+        $form->add('submit', 'submit');
 
         $search = array();
         $form->handleRequest($request);
@@ -80,6 +81,7 @@ class DefaultController extends Controller
         }
 
         $form = $this->createForm(new DeckType());
+        $form->add('submit', 'submit');
 
         $search = array();
         $form->handleRequest($request);
@@ -163,6 +165,7 @@ class DefaultController extends Controller
 		}
 
 		$form = $this->createForm(new SourceType());
+        $form->add('submit', 'submit');
 
 		$search = array();
 		$form->handleRequest($request);
