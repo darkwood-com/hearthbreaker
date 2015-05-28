@@ -77,7 +77,7 @@ class ScrapperHearthstatsService
             $crawler = $this->requestRoute('deck_list', array('page' => $page));
 
             $slugs = $crawler
-                ->filter('.decklist .name a')
+                ->filter('.public-deck-name a')
                 ->each(function (Crawler $node) {
                     try {
                         $href = $node->attr('href');
