@@ -80,6 +80,10 @@ class ScrapperHearthstonedecksService
             'October', 'November', 'December',
         ), strtolower($date));
 
+        if(preg_match('/^il y a ([0-9]+) heure(s?)$/', $date, $m)) {
+            $date = $m[1] . 'hour' . $m[2] . ' ago';
+        }
+
         return new \DateTime($date);
     }
 
