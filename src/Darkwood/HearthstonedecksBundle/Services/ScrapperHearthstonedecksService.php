@@ -84,6 +84,8 @@ class ScrapperHearthstonedecksService
             $date = $m[1] . 'hour' . $m[2] . ' ago';
         }
 
+        $date = str_replace(' à ', ' ', $date);
+
         return new \DateTime($date);
     }
 

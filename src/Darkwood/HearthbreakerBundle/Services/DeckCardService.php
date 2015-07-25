@@ -3,6 +3,8 @@
 namespace Darkwood\HearthbreakerBundle\Services;
 
 use Darkwood\HearthbreakerBundle\Entity\DeckCard;
+use Darkwood\HearthbreakerBundle\Entity\Card;
+use Darkwood\HearthbreakerBundle\Entity\Deck;
 use Doctrine\ORM\EntityManager;
 use Darkwood\HearthbreakerBundle\Repository\DeckCardRepository;
 
@@ -57,12 +59,14 @@ class DeckCardService
     }
 
     /**
-     * @param $slug
-     *
+     * @param Deck $deck
+     * @param Card $card
      * @return null|DeckCard
      */
     public function findByDeckAndCard($deck, $card)
     {
+        if(!$deck->getId() || !$card->getId()) return null;
+
         return $this->deckCardRepository->findOneBy(array('deck' => $deck, 'card' => $card));
     }
 }
