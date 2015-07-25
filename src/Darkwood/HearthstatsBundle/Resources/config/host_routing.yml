@@ -8,5 +8,5 @@ deck_list:
     path: /decks/public
 
 deck_detail:
-    path: /decks/{slug}/public_show
+    path: /decks/{slug}
     defaults: { locale: 'en' }
