@@ -1,7 +1,3 @@
 #!/bin/sh
-composer.phar install
 
-rm -rf app/cache/* app/logs/*
-
-app/console assets:install htdocs --symlink
-app/console assetic:dump
+ssh 136389@git.dc0.gpaas.net 'deploy heartbreaker.darkwood.fr.git master'
