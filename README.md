@@ -29,3 +29,5 @@ then (install virtual-box dans vagrant)
     $ vagrant up
 
 that's it !
+
+_(NB the project is configured to work on [gandi simple hosting server](https://www.gandi.net/hosting/simple), root here is htdocs)_
