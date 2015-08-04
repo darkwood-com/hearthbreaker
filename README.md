@@ -1,25 +1,33 @@
-Symfony Standard Edition
-========================
+Hearthbreaker
+=============
+
+Intro
+-----
+
+Hearthbreaker is an extra simple web server based on [Apache](http://httpd.apache.org/), [Symfony](http://symfony.com/) and [Twitter-Bootstap](http://getbootstrap.com/). It is an helper for the famous game [Hearthstone](http://eu.battle.net/hearthstone). It scrapp cards and decks stats (win rate) from various website sources. Use it as below
+
+1) You scrapp cards and deck by launching the command line :
+
+    app/console hb:scrapper 
+    
+2) You register a new local account (or connected to the default one - login : admin@example.com, password : admin)
+
+3) You check all card you own
+
+4) Then you can search and filter among deck. It will find decks that you could potentially build with an high win rate.
+
 
 Install
 -------
 
-### /etc/hosts
-10.1.1.52 heartbreaker
-10.1.1.52 heartbreaker.dev
-10.1.1.52 php-memcached-admin.heartbreaker.dev
+add in your /etc/hosts
 
-### phpMemcachedAdmin
+    10.1.1.52 heartbreaker.dev.dev
 
-mkdir phpMemcachedAdmin
-cd phpMemcachedAdmin
-wget http://phpmemcacheadmin.googlecode.com/files/phpMemcachedAdmin-1.2.2-r262.tar.gz
-tar -xvzf phpMemcachedAdmin-1.2.2-r262.tar.gz
-chmod +rx *
-chmod 0777 Config/Memcache.php
-chmod 0777 Temp/
+then (install virtual-box dans vagrant)
+    
+    $ vagrant up
 
-### vagrant up ###
+that's it !
 
-scp -i puphpet/files/dot/ssh/id_rsa ~/.ssh/id_rsa vagrant@heartbreaker:~/.ssh/id_rsa
-scp -i puphpet/files/dot/ssh/id_rsa ~/.ssh/id_rsa.pub vagrant@heartbreaker:~/.ssh/id_rsa.pub
+_(NB the project is configured to work on [gandi simple hosting server](https://www.gandi.net/hosting/simple), root here is htdocs)_
