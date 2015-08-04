@@ -239,7 +239,7 @@ class DefaultController extends Controller
             $userCard->setCard($card);
             $userCard->setIsGolden($isGolden);
         }
-        $quantity = ($userCard->getQuantity() + 1) % 4;
+        $quantity = ($userCard->getQuantity() + 1) % 3;
         $userCard->setQuantity($quantity);
         $userCardService->save($userCard);
 
