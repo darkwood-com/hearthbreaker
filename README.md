@@ -1,19 +1,19 @@
-Symfony Standard Edition
-========================
+Hearthbreaker
+=============
 
 Intro
 -----
 
-Hearthbreaker is an extra simple web server based on Apache, Symfony2 and twitter-bootstap.
-It is an helper for the famous game [Hearthstone](http://eu.battle.net/hearthstone)
-It scrapp cards and decks stats (win rate) from various website sources. Use it as below
+Hearthbreaker is an extra simple web server based on [Apache](http://httpd.apache.org/), [Symfony](http://symfony.com/) and [Twitter-Bootstap](http://getbootstrap.com/). It is an helper for the famous game [Hearthstone](http://eu.battle.net/hearthstone). It scrapp cards and decks stats (win rate) from various website sources. Use it as below
 
 1) You scrapp cards and deck by launching the command line :
 
     app/console hb:scrapper 
     
 2) You register a new local account (or connected to the default one - login : admin@example.com, password : admin)
+
 3) You check all card you own
+
 4) Then you can search and filter among deck. It will find decks that you could potentially build with an high win rate.
 
 
@@ -29,3 +29,5 @@ then (install virtual-box dans vagrant)
     $ vagrant up
 
 that's it !
+
+_(NB the project is configured to work on [gandi simple hosting server](https://www.gandi.net/hosting/simple), root here is htdocs)_

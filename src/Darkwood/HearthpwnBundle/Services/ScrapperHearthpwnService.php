@@ -230,9 +230,9 @@ class ScrapperHearthpwnService
 
         $crawler = $this->requestRoute('deck_detail', array('slug' => $slug));
 
-        $deck->setName($crawler->filter('#content .details h2')->text());
-        $deck->setRating(intval($crawler->filter('#content .details .t-deck-rating .rating-average')->text()));
-        $deck->setUpdatedAt($this->guessDate($crawler->filter('#content .details .t-deck-header .standard-date')->text()));
+        $deck->setName($crawler->filter('#content .deck-detail h2')->text());
+        $deck->setRating(intval($crawler->filter('#content .deck-detail .rating-average')->text()));
+        $deck->setUpdatedAt($this->guessDate($crawler->filter('#content .deck-detail .last-updated .standard-date')->text()));
 
         $cards = $crawler
             ->filter('#content .details .t-deck-details-card-list .col-name')
