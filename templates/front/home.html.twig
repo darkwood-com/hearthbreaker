@@ -2,4 +2,21 @@
 
 {% block body %}
 
+<div id="card-list">
+    <div class="row row-cols-12">
+    {% for card, counts in collection %}
+        <div class="col" style="text-align: center">
+            <a class="card-image" href="#">
+                <img src="https://art.hearthstonejson.com/v1/render/latest/frFR/256x/{{ cards[card].id }}.png" height="350" alt="{{ cards[card].name }}">
+            </a>
+            <div class="infos">
+                <p>Normal : {{ counts[0] }}/2</p>
+                <p>Golden : {{ counts[1] }}/2</p>
+                <p>Set : {{ cards[card].set }}</p>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+</div>
+
 {% endblock %}
